@@ -1,29 +1,16 @@
 import "reflect-metadata";
 import express from "express";
+import { router } from "./routes";
+
+
 
 import "./database"
 
 const app = express();
 
-/**
- * Tipos de parâmetros
- * Routes Params -> http://localhost:3031/produtos/?????????
- * Query Parms ->
- * 
- * Body Params ->
- * */
+app.use(express.json);
 
- /**
-  * Request(req) => Entrando
-  * Response(res) => Saindo
-  * */
+app.use(router);
 
-app.get("/teste",(req, res)=>{
-	return res.send("Teste da rota GET");
-})
 
-app.post("/teste-post",(req, res)=>{
-	return res.send("Teste da rota POST");
-})
-
-app.listen(3031, () => console.log("Server Running in 3031 - NLW#6"));
+app.listen(3031, () => console.log("Server Running in 3031 - NLW#6")); 

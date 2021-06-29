@@ -1,21 +1,22 @@
+import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 
 interface IUserRequest{
 	name: string;
-	emai: string;
+	email: string;
 	admin?: boolean
 }
 
-class CreateUsersService{
+class CreateUserService{
 	async execute({ name, email, admin} : IUserRequest){
-		const UsersRepository = new UsersRepositories();
+		const usersRepository = getCustomRepository(UsersRepositories);
 
 		if(!email){
 			throw new Error("Email incorrect");
 		}
 
 
-		const userAlreadExists = await UsersRepository.findOne({
+		const userAlreadExists = await usersRepository.findOne({
 			email
 		});
 
@@ -23,16 +24,16 @@ class CreateUsersService{
 			throw new Error("User alread exists");
 		}
 
-		const user = UsersRepository.create({
+		const user = usersRepository.create({
 			name,
 			email,
 			admin	 
 		})
 
-		await userRepository.save(user);
+		await usersRepository.save(user);
 
 		return user;
 	}
 }
 
-export { CreateUsersService };
+export { CreateUserService };
