@@ -21,7 +21,7 @@ class CreateUserService{
 		});
 
 		if(userAlreadExists){
-			throw new Error("User alread exists");
+			throw new Error("Usuario já existe");
 		}
 
 		const user = usersRepository.create({
