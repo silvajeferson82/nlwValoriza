@@ -10,7 +10,7 @@ import {
  @Entity("tags")
  class Tag{
  	@PrimaryColumn()
- 	readonly
+ 	readonly id: string; 
 
  	@Column()
  	name: string
