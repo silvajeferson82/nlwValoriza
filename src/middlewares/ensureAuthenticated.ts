@@ -21,8 +21,11 @@ export function ensureAthenticated(
   const [,token] = authToken.split(" ")
 
   try {
-    const { sub } = verify( token, "90880e6e12ef332464804bbc9cd31e5a") as IPayload;
-   
+    const { sub } = verify( 
+      token,
+      "90880e6e12ef332464804bbc9cd31e5a"
+    ) as IPayload;
+    //Recuperar as informações do usúario  
     request.user_id = sub;
     
     return next(); 
